@@ -1,1 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>TUIDE PLAYGROUND</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f0e7;
+  color: #202020;
+  overflow-x: hidden;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(244,240,231,0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #202020;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #202020;
+  margin-left: 18px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 92vh;
+  padding: 80px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, #d8e7d0 0 12%, transparent 13%),
+    radial-gradient(circle at 85% 75%, #e3d5bb 0 15%, transparent 16%),
+    #f4f0e7;
+}
+
+.hero-content {
+  max-width: 850px;
+  position: relative;
+  z-index: 2;
+}
+
+.sticker {
+  display: inline-block;
+  background: #202020;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transform: rotate(-3deg);
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 15vw, 9rem);
+  line-height: 0.82;
+  letter-spacing: -7px;
+  font-weight: 900;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero p {
+  max-width: 550px;
+  margin: 30px auto;
+  font-size: 1rem;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  color: #202020;
+  border: 2px solid #202020;
+  padding: 13px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin: 5px;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: #202020;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section {
+  padding: 90px 8%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+h2 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 20px;
+}
+
+.intro {
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   STREAMING CARDS
+========================= */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #fffdf8;
+  border: 2px solid #202020;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 6px 6px 0 #202020;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 9px 9px 0 #202020;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   MISSION
+========================= */
+
+.mission-section {
+  max-width: 100%;
+  background: #202020;
+  color: white;
+}
+
+.mission-box {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.mission-section .section-label {
+  color: #d8e7d0;
+}
+
+.mission {
+  margin-top: 30px;
+  border: 2px solid white;
+  border-radius: 25px;
+  padding: 35px;
+}
+
+.mission-number {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  opacity: 0.6;
+}
+
+.mission h3 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.progress {
+  width: 100%;
+  height: 20px;
+  background: #555;
+  border-radius: 30px;
+  overflow: hidden;
+  margin: 25px 0 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 60%;
+  background: white;
+  border-radius: 30px;
+}
+
+/* =========================
+   MILESTONES
+========================= */
+
+.milestones {
+  margin-top: 35px;
+}
+
+.milestone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 5px;
+  border-bottom: 2px solid #202020;
+}
+
+.milestone strong {
+  font-size: 1.1rem;
+}
+
+.completed {
+  background: #d8e7d0;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.locked {
+  background: #ddd8ce;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* =========================
+   NOTICE BOARD
+========================= */
+
+.notice-board {
+  background: #e3d5bb;
+  border: 2px solid #202020;
+  border-radius: 25px;
+  padding: 35px;
+  transform: rotate(-1deg);
+}
+
+.notice {
+  background: #fffdf8;
+  padding: 20px;
+  margin-top: 15px;
+  border-left: 6px solid #202020;
+}
+
+.notice h3 {
+  margin-bottom: 5px;
+}
+
+/* =========================
+   SQUAD
+========================= */
+
+.squad {
+  text-align: center;
+}
+
+.squad-box {
+  padding: 50px 20px;
+  border: 2px dashed #202020;
+  border-radius: 25px;
+}
+
+.squad-box p {
+  max-width: 600px;
+  margin: 15px auto 25px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #202020;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+footer h2 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+}
+
+footer p {
+  opacity: 0.65;
+  font-size: 0.8rem;
+  margin-top: 15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+  nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav a {
+    margin: 0 5px;
+    font-size: 0.7rem;
+  }
+
+  .hero h1 {
+    letter-spacing: -4px;
+  }
+
+  section {
+    padding: 65px 6%;
+  }
+
+  .milestone {
+    gap: 15px;
+  }
+
+  .mission {
+    padding: 25px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+  <div class="logo">
+    TUIDE PLAYGROUND
+  </div>
+
+  <div>
+    <a href="#stream">STREAM</a>
+    <a href="#missions">MISSIONS</a>
+    <a href="#milestones">MILESTONES</a>
+    <a href="#updates">UPDATES</a>
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero" id="home">
+
+  <div class="hero-content">
+
+    <div class="sticker">
+      STREAMING CAMP • 2026
+    </div>
+
+    <h1>
+      TUIDE
+      <span>PLAYGROUND</span>
+    </h1>
+
+    <p>
+      Welcome to the streaming camp.
+      Join the squad, complete the missions,
+      and help TUIDE reach the next milestone.
+    </p>
+
+    <a class="button" href="#stream">
+      ENTER THE PLAYGROUND →
+    </a>
+
+    <a class="button" href="#missions">
+      VIEW MISSION
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     STREAMING
+========================= -->
+
+<section id="stream">
+
+  <div class="section-label">
+    CAMP STATION 01
+  </div>
+
+  <h2>
+    STREAM
+  </h2>
+
+  <p class="intro">
+    Choose your platform and support TUIDE.
+    Replace the buttons below with TUIDE's official links.
+  </p>
+
+
+  <div class="cards">
+
+
+    <!-- SPOTIFY -->
+
+    <div class="card">
+
+      <div class="card-icon">
+        🎧
+      </div>
+
+      <h3>
+        Spotify
+      </h3>
+
+      <p>
+        Stream TUIDE on Spotify.
+      </p>
+
+      <!-- CHANGE # TO THE REAL SPOTIFY LINK -->
+
+      <a
+        class="button"
+        href="#"
+        target="_blank">
+        STREAM →
+      </a>
+
+    </div>
+
+
+    <!-- YOUTUBE -->
+
+    <div class="card">
+
+      <div class="card-icon">
+        ▶️
+      </div>
+
+      <h3>
+        YouTube
+      </h3>
+
+      <p>
+        Watch TUIDE's official videos.
+      </p>
+
+      <!-- CHANGE # TO THE REAL YOUTUBE LINK -->
+
+      <a
+        class="button"
+        href="#"
+        target="_blank">
+        WATCH →
+      </a>
+
+    </div>
+
+
+    <!-- APPLE MUSIC -->
+
+    <div class="card">
+
+      <div class="card-icon">
+        🎵
+      </div>
+
+      <h3>
+        Apple Music
+      </h3>
+
+      <p>
+        Listen to TUIDE on Apple Music.
+      </p>
+
+      <!-- CHANGE # TO THE REAL APPLE MUSIC LINK -->
+
+      <a
+        class="button"
+        href="#"
+        target="_blank">
+        LISTEN →
+      </a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MISSIONS
+========================= -->
+
+<section class="mission-section" id="missions">
+
+  <div class="mission-box">
+
+    <div class="section-label">
+      CAMP STATION 02
+    </div>
+
+    <h2>
+      TODAY'S<br>MISSION
+    </h2>
+
+    <div class="mission">
+
+      <div class="mission-number">
+        MISSION 001
+      </div>
+
+      <h3>
+        THE NEXT MILLION
+      </h3>
+
+      <p>
+        Let's work together and reach
+        our next streaming milestone.
+      </p>
+
+      <div class="progress">
+
+        <!-- CHANGE 60% TO YOUR ACTUAL PROGRESS -->
+
+        <div class="progress-bar"></div>
+
+      </div>
+
+      <p>
+        <strong>
+          600,000 / 1,000,000
+        </strong>
+        streams
+      </p>
+
+      <br>
+
+      <a
+        class="button"
+        href="#stream">
+        JOIN THE MISSION →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MILESTONES
+========================= -->
+
+<section id="milestones">
+
+  <div class="section-label">
+    CAMP STATION 03
+  </div>
+
+  <h2>
+    MILESTONE<br>BOARD
+  </h2>
+
+  <p class="intro">
+    Every milestone belongs to the squad.
+  </p>
+
+
+  <div class="milestones">
+
+
+    <div class="milestone">
+
+      <strong>
+        100K STREAMS
+      </strong>
+
+      <span class="completed">
+        ✓ COMPLETED
+      </span>
+
+    </div>
+
+
+    <div class="milestone">
+
+      <strong>
+        500K STREAMS
+      </strong>
+
+      <span class="completed">
+        ✓ COMPLETED
+      </span>
+
+    </div>
+
+
+    <div class="milestone">
+
+      <strong>
+        1M STREAMS
+      </strong>
+
+      <span class="locked">
+        NEXT MISSION
+      </span>
+
+    </div>
+
+
+    <div class="milestone">
+
+      <strong>
+        5M STREAMS
+      </strong>
+
+      <span class="locked">
+        LOCKED
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     UPDATES
+========================= -->
+
+<section id="updates">
+
+  <div class="section-label">
+    CAMP STATION 04
+  </div>
+
+  <h2>
+    NOTICE<br>BOARD
+  </h2>
+
+  <div class="notice-board">
+
+
+    <div class="notice">
+
+      <h3>
+        📢 STREAMING UPDATE
+      </h3>
+
+      <p>
+        Add your latest streaming announcement here.
+      </p>
+
+    </div>
+
+
+    <div class="notice">
+
+      <h3>
+        🎯 NEW MISSION
+      </h3>
+
+      <p>
+        Add your next streaming goal here.
+      </p>
+
+    </div>
+
+
+    <div class="notice">
+
+      <h3>
+        🏕️ CAMP NEWS
+      </h3>
+
+      <p>
+        Add important TUIDE fanbase updates here.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SQUAD
+========================= -->
+
+<section class="squad">
+
+  <div class="section-label">
+    THE SQUAD
+  </div>
+
+  <h2>
+    WE PLAY<br>TOGETHER.
+  </h2>
+
+  <div class="squad-box">
+
+    <p>
+      TUIDE PLAYGROUND is an independent
+      fan-made streaming hub created to
+      bring the squad together.
+    </p>
+
+    <a
+      class="button"
+      href="#home">
+      BACK TO CAMP ↑
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <h2>
+    TUIDE PLAYGROUND
+  </h2>
+
+  <p>
+    ENTER THE PLAYGROUND. JOIN THE SQUAD.
+  </p>
+
+  <p>
+    Independent fan-made project.
+    Not affiliated with TUIDE or their agency.
+  </p>
+
+</footer>
+
+
+</body>
+  </html>
